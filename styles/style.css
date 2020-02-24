@@ -1,0 +1,30 @@
+html{
+    font-family: sans-serif;
+    text-align: center;
+}
+body {
+    margin: 0px;
+}
+div {
+}
+span {
+    width: 50%;
+    float: left;
+}
+span.wordSpan {
+    background: #cbd7b5;
+}
+span.strikeSpan {
+    background: #485541;
+}
+div.formDiv {
+    width: 100%;
+    background: #4b4f53;
+}
+div.gallowsDiv {
+    background: #141615;
+}
+form {
+    width: 100%;
+    margin: 5px;
+}

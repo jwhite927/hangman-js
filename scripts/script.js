@@ -1,0 +1,98 @@
+let word = prompt("Welcome to Hangman! Player 1, please enter a word for Player 2 to guess.").toUpperCase();
+
+let revealedLetters = new Array(word.length);
+revealedLetters.fill(false);
+
+const maxStrikes = 6;
+let strikes = 0;
+
+let strikeLetters = new Array(maxStrikes);
+
+/* Get HTML Elements */
+let wordProg = document.getElementById("wordProg");
+let strikeHeader = document.getElementById("strikes");
+let gallows = document.getElementById("gallows");
+let guessForm = document.getElementById("formElement");
+
+drawWordProgress();
+
+function drawStrikeLetters(guess) {
+    strikeLetters[strikes] = guess;
+    let strikeStr = "";
+    let index = 0;
+    while (index <= strikes){
+	strikeStr += strikeLetters[index] + " ";	
+	index++;
+    }
+    strikeHeader.innerHTML = strikeStr;
+}
+
+function drawWordProgress() {
+    let puzzleStr = "";
+    let index = 0;
+    while (index < word.length) { //Create puzzleStr based on correctly guessed letters
+
+	if (revealedLetters[index]){
+	    puzzleStr += word[index] + " ";
+	    index++;
+	    continue;
+	}
+	else
+	    puzzleStr += "- ";
+
+	index++;
+    }
+    wordProg.innerHTML = puzzleStr;
+    index = 0;
+    while (revealedLetters[index]) { //Give the victory message if all letters are revealed.
+	if (index == word.length - 1){	
+	    guessForm.outerHTML = ""; //Removes the form to stop play
+	    alert("Player2 Completed the Word!\n\nRefresh to Play Again");
+	}
+	index++;
+    }
+}
+
+function drawGallows() {
+    gallows.src = "images/strike-" + strikes + ".png";
+}
+
+guessForm.addEventListener("submit", processGuess);
+
+function processGuess(event) {
+    event.preventDefault();
+    let guess = document.getElementById("guessInput").value.toUpperCase();
+    guess = guess.charAt(0);
+
+    let notInPuzzle = true;
+    let index = 0;
+    while (index < word.length){
+	if(word.charAt(index) == guess){
+	    revealedLetters[index] = true;
+	    notInPuzzle = false;
+	}
+	index++;
+    }
+    drawWordProgress();
+
+    for (let i = 0; i <= strikes; i++){ //Check if letter has already been guessed.
+	if (guess == strikeLetters[i]){
+	    alert(guess + " has already been guessed!\n\nChoose a different character.");
+	    notInPuzzle = false;
+	    break;
+	}
+    }
+
+    if (notInPuzzle == true) { //Add to strike letters if a strike.
+
+	drawStrikeLetters(guess);
+	strikes++;
+	drawGallows();
+    }
+
+    if (strikes < maxStrikes) {
+	return;
+    } else
+	guessForm.outerHTML = ""; //Removes the form to stop play
+    alert("Player1 wins!\n\nRefresh to Play Again");
+}

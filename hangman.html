@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hangman!</title>
+        <!--You do not need to edit this file.-->
+        <link rel="stylesheet" href="styles/style.css">
+        
+    </head>
+    <body>
+	<div>
+	<span class="wordSpan"><h1>THE WORD:</h1></span>
+	<span class="strikeSpan"><h1>STRIKES:</h1></span>
+	</div>
+	<div>
+	<span class="wordSpan"><h1 id="wordProg">Puzzle</h1></span>
+	<span class="strikeSpan"><h1 id="strikes">No Strikes Yet!</h1></span>
+	</div>
+	<div class="formDiv">
+            <form id ="formElement">
+                <label for ="guessInput">Guess</label>
+                <input type="text" id = "guessInput" name="name"/>
+                <input type ="submit"/>
+            </form>
+	</div>
+	<div class="gallowsDiv">
+	    <img id="gallows" src="images/strike-0.png" alt="Zero Strikes">
+	</div>    
+    </body>
+	
+	<script src= "scripts/script.js"></script>
+</html>
