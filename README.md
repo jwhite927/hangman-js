@@ -9,4 +9,4 @@ If Player 2 guesses a letter that is not in the word, that letter is added to th
 and part of the hangman is drawn in. If Player 2 guesses a letter that IS in the word, that letter is filled in in the puzzle.
 
 ## To Run the Game
-Open hangman.html in a browser window
+Open `hangman.html` in a browser window
