@@ -30,7 +30,8 @@ function drawStrikeLetters(guess) {
 function drawWordProgress() {
     let puzzleStr = "";
     let index = 0;
-    while (index < word.length) { //Create puzzleStr based on correctly guessed letters
+    /* Create puzzleStr based on correctly guessed letters */
+    while (index < word.length) { 
 
 	if (revealedLetters[index]){
 	    puzzleStr += word[index] + " ";
@@ -44,9 +45,11 @@ function drawWordProgress() {
     }
     wordProg.innerHTML = puzzleStr;
     index = 0;
-    while (revealedLetters[index]) { //Give the victory message if all letters are revealed.
-	if (index == word.length - 1){	
-	    guessForm.outerHTML = ""; //Removes the form to stop play
+    /* Give the victory message if all letters are revealed */
+    while (revealedLetters[index]) {
+	if (index == word.length - 1){
+    	/* Removes the form to stop play */
+	    guessForm.outerHTML = "";
 	    alert("Player2 Completed the Word!\n\nRefresh to Play Again");
 	}
 	index++;
@@ -75,7 +78,8 @@ function processGuess(event) {
     }
     drawWordProgress();
 
-    for (let i = 0; i <= strikes; i++){ //Check if letter has already been guessed.
+    /* Check if letter has already been guessed */
+    for (let i = 0; i <= strikes; i++){ 
 	if (guess == strikeLetters[i]){
 	    alert(guess + " has already been guessed!\n\nChoose a different character.");
 	    notInPuzzle = false;
@@ -83,7 +87,8 @@ function processGuess(event) {
 	}
     }
 
-    if (notInPuzzle == true) { //Add to strike letters if a strike.
+    /* Add to strike letters if a strike */
+    if (notInPuzzle == true) { 
 
 	drawStrikeLetters(guess);
 	strikes++;
@@ -93,6 +98,7 @@ function processGuess(event) {
     if (strikes < maxStrikes) {
 	return;
     } else
-	guessForm.outerHTML = ""; //Removes the form to stop play
+    /* Removes the form to stop play */
+	guessForm.outerHTML = ""; 
     alert("Player1 wins!\n\nRefresh to Play Again");
 }
