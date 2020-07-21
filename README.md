@@ -10,3 +10,7 @@ and part of the hangman is drawn in. If Player 2 guesses a letter that IS in the
 
 ## To Run the Game
 Open `hangman.html` in a browser window
+
+# License
+
+This project is licensed under the [MIT License](LICENSE)
